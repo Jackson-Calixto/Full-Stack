@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -10,25 +10,18 @@ using Microsoft.Extensions.Logging;
 
 namespace Cinema.API.Controllers
 {
-    [ApiController]
     [Route("[controller]")]
-    public class FilmeController : ControllerBase
+    public class SessaoController : Controller
     {
         private readonly DataContext _context;
-        public FilmeController(DataContext context)
+        public SessaoController(DataContext context)
         {
             _context = context;
         }
 
         [HttpGet]
-        public IEnumerable<Filme> Get()
-        {
-            return _context.Filmes;
-        }
-
-        [HttpGet("{id}")]
-        public IEnumerable<Filme> GetById(int id){
-            return _context.Filmes.Where(f => f.FilmeId == id);
+        public IEnumerable<Sessao> Get(){
+            return _context.Sessoes;
         }
     }
 }

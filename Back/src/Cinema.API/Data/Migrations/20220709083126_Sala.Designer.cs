@@ -3,14 +3,16 @@ using System;
 using Cinema.API.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Cinema.API.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20220709083126_Sala")]
+    partial class Sala
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -54,41 +56,6 @@ namespace Cinema.API.Data.Migrations
                     b.HasKey("SalaId");
 
                     b.ToTable("Salas");
-                });
-
-            modelBuilder.Entity("Cinema.API.Models.Sessao", b =>
-                {
-                    b.Property<int>("SessaoId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Animacao")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Audio")
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime>("Data")
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("FilmeId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<DateTime>("HorarioFim")
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime>("HorarioInicio")
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("SalaId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<double>("ValorIngresso")
-                        .HasColumnType("REAL");
-
-                    b.HasKey("SessaoId");
-
-                    b.ToTable("Sessoes");
                 });
 #pragma warning restore 612, 618
         }
