@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Cinema.API.Data;
 using Cinema.API.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -12,37 +13,21 @@ namespace Cinema.API.Controllers
     [Route("[controller]")]
     public class FilmeController : ControllerBase
     {
-        public Filme[] filme = {
-                new Filme(){
-                    FilmeId = 1,
-                    Imagem = "Img.png",
-                    Titulo = "API",
-                    Descricao = "Minha primeira",
-                    Duracao = TimeSpan.FromMinutes(148)
-                },
-                new Filme(){
-                    FilmeId = 2,
-                    Imagem = "Top.png",
-                    Titulo = "Angular",
-                    Descricao = "Frontend",
-                    Duracao = TimeSpan.FromMinutes(175)
-                }};
-        private readonly ILogger<FilmeController> _logger;
-
-        public FilmeController(ILogger<FilmeController> logger)
+        private readonly DataContext _context;
+        public FilmeController(DataContext context)
         {
-            _logger = logger;
+            _context = context;
         }
 
         [HttpGet]
         public IEnumerable<Filme> Get()
         {
-            return filme;
+            return _context.Filmes;
         }
 
         [HttpGet("{id}")]
         public IEnumerable<Filme> GetById(int id){
-            return filme.Where(f => f.FilmeId == id);
+            return _context.Filmes.Where(f => f.FilmeId == id);
         }
     }
 }
